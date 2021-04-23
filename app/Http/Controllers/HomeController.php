@@ -47,4 +47,12 @@ class HomeController extends Controller
         $chapters = $this->comicRepository->getAllChapter($id);
         return view('comic/detail-comic', compact('entities', 'categories', 'chapters', 'author'));
     }
+
+    public function viewChapter($id, $chapter_id)
+    {
+        $categories = $this->categoryRepository->getList();
+        $comic_name   = $this->comicRepository->getById($id)->name;
+        $chapter    = $this->comicRepository->getChapter($id, $chapter_id);
+        return view('comic/chapter', compact('categories', 'comic_name', 'chapter'));
+    }
 }

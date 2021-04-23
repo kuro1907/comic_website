@@ -3,7 +3,7 @@
 @section('cover')
 <div class="col-md-12 top-50">
     <div class="row justify-content-md-center">
-        <h3>Tên truyện</h3>
+        <h3>{{$comic_name}} - Chap {{$chapter[0]->number}}: {{$chapter[0]->name}}</h3>
     </div>
     <div class="row justify-content-md-center">
         <a class="col-md-2 btn btn-dark" href="">Chap trước</a>
@@ -24,11 +24,7 @@
 @section('content')
 <div class="content bottom-50 ">
     <div class="row justify-content-md-center">
-        <img src="/storage/img/1200x628-100-2.jpg" alt="">
-        <img src="/storage/img/1200x628-100-2.jpg" alt="">
-        <img src="/storage/img/1200x628-100-2.jpg" alt="">
-        <img src="/storage/img/1200x628-100-2.jpg" alt="">
-        <img src="/storage/img/1200x628-100-2.jpg" alt="">
+        {!!$chapter[0]->content!!}
     </div>
 </div>
 

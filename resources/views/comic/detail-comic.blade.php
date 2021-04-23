@@ -37,7 +37,7 @@
             @foreach($chapters as $key => $chapter)
             <tr>
                 <td scope="row">{{++$key}}</td>
-                <td><a class="text-comic" href="">Chap {{$chapter->number}}: {{$chapter->name}}</a></td>
+                <td><a class="text-comic" href="/comic/{{$entities->id}}/chapter/{{$chapter->id}}">Chap {{$chapter->number}}: {{$chapter->name}}</a></td>
                 <td>{{$chapter->dayRelease}}</td>
             </tr>
             @endforeach

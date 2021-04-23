@@ -24,6 +24,12 @@ class ComicEloquentRepository implements ComicRepository
         return $chapters;
     }
 
+    public function getChapter($id, $chapter_id)
+    {
+        $chapter = $this->getById($id)->chapters()->where('id', $chapter_id)->get();
+        return $chapter;
+    }
+
     public function getAuthor($id)
     {
     }
