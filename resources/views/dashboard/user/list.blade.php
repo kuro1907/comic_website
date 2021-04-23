@@ -1,2 +1,5 @@
 @extends('layouts.dashboard-layout')
-@section('title','Quản lý người dùng')
+@section('title','QUẢN LÝ NGƯỜI DÙNG')
+@section('content')
+
+@endsection

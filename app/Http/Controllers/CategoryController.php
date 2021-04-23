@@ -12,4 +12,10 @@ class CategoryController extends Controller
     {
         $this->categoryRepository =  $categoryRepository;
     }
+
+    public function getCategories()
+    {
+        $categories = $this->categoryRepository->getList();
+        return view('dashboard.categories.list', compact('categories'));
+    }
 }

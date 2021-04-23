@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ComicsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,13 +34,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/users', function () {
         return view('dashboard.user.list');
     });
-    Route::get('/categories', function () {
-        return view('dashboard.categories.list');
-    });
-    Route::get('/comics', function () {
-        return view('dashboard.comics.list');
-    });
-    Route::get('/authors', function () {
-        return view('dashboard.authors.list');
-    });
+    Route::get('/categories', [CategoryController::class, 'getCategories']);
+
+    Route::get('/comics', [ComicsController::class, 'getComics']);
+
+    Route::get('/authors', [AuthorController::class, 'getAuthors']);
+    Route::get('/authors/create', [AuthorController::class, 'createAuthor']);
+    Route::post('/authors/create', [AuthorController::class, 'storeAuthor']);
 });

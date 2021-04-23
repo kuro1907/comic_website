@@ -25,7 +25,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
             <li class="nav-item  active">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/admin">
                     <span>Trang chủ</span></a>
             </li>
             <!-- Divider -->
@@ -81,8 +81,8 @@
                         <h1 class="h3 mb-0 text-gray-800 align-center">@yield('title')</h1>
                     </div>
                 </nav>
-                <div class="container-fluid">
-
+                <div class="container">
+                    @yield('content')
                 </div>
             </div>
         </div>
