@@ -14,20 +14,32 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">TẠO TÀI KHOẢN </h1>
                         </div>
-                        <form class="user" method="post" action="/register">
+                        <form class="user needs-validation" method="post" action="/register" novalidate>
                             @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" name="username" placeholder="Nhập tài khoản">
+                                <input type="text" class="form-control form-control-user" name="username" placeholder="Nhập tài khoản" required>
+                                <div class="invalid-feedback">
+                                    Vui lòng điền tên đăng nhập.
+                                </div>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control form-control-user" name="email" placeholder="Nhập email">
+                                <input type="email" class="form-control form-control-user" name="email" placeholder="Nhập email" required>
+                                <div class="invalid-feedback">
+                                    Vui lòng điền email đầy đủ và đúng định dạng.
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="password" class="form-control form-control-user" name="password" placeholder="Mật khẩu">
+                                    <input type="password" class="form-control form-control-user" name="password" placeholder="Mật khẩu" required>
+                                    <div class="invalid-feedback">
+                                        Vui lòng điền mật khẩu.
+                                    </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="password" class="form-control form-control-user" name="repeatPassword" placeholder="Lặp lại mật khẩu">
+                                    <input type="password" class="form-control form-control-user" name="repeatPassword" placeholder="Lặp lại mật khẩu" required>
+                                    <div class="invalid-feedback">
+                                        Vui lòng nhập lại mật khẩu.
+                                    </div>
                                 </div>
                             </div>
 

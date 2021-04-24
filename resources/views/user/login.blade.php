@@ -20,17 +20,22 @@
                                 @if ( Session::has('error') )
                                 <div class="col-md-12 alert alert-danger" role="alert">
                                     <strong>{{ Session::get('error') }}</strong>
-
                                 </div>
                                 @endif
 
-                                <form class="user" method="post" action="/login">
+                                <form class="user needs-validation" method="post" action="/login" novalidate>
                                     @csrf
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" name="username" placeholder="Nhập tài khoản ...">
+                                        <input type="text" class="form-control form-control-user" name="username" placeholder="Nhập tài khoản ..." required>
+                                        <div class="invalid-feedback">
+                                            Vui lòng điền tên đăng nhập.
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" name="password" placeholder="Nhập mật khẩu ...">
+                                        <input type="password" class="form-control form-control-user" name="password" placeholder="Nhập mật khẩu ..." required>
+                                        <div class="invalid-feedback">
+                                            Vui lòng điền mật khẩu
+                                        </div>
                                     </div>
                                     <button class="btn btn-primary btn-user btn-block">Đăng nhập</button>
                                 </form>
