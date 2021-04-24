@@ -25,9 +25,8 @@ class AuthController extends Controller
     {
         $username = $request->username;
         $password = $request->password;
-
         if (Auth::attempt(['username' => $username, 'password' => $password])) {
-            return redirect('/register');
+            return redirect('/');
         } else {
             Session::flash('error', 'Tài khoản hoặc mật khẩu không đúng');
             return redirect('login');
@@ -46,7 +45,6 @@ class AuthController extends Controller
             'email'      => $request->email,
             'password'   => bcrypt($request->password)
         ];
-
         $this->userRepository->create($attributes);
         return redirect('login');
     }
@@ -54,5 +52,12 @@ class AuthController extends Controller
     public function forgotPassword()
     {
         return view('user.forgot_password');
+    }
+
+    public function getList()
+    {
+        $users = $this->userRepository->getPaginate();
+        // $users = $this->userRepository->getList();
+        return view('dashboard.users.list', compact('users'));
     }
 }

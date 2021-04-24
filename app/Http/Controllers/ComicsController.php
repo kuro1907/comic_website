@@ -16,7 +16,7 @@ class ComicsController extends Controller
 
     public function getComics()
     {
-        $comics = $this->comicRepository->getList();
+        $comics = $this->comicRepository->getPaginate();
         return view('dashboard.comics.list', compact('comics'));
     }
 }

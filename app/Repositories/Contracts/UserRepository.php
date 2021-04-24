@@ -6,4 +6,5 @@ use App\Repositories\Contracts\BaseRepository;
 
 interface UserRepository extends BaseRepository
 {
+    public function getPaginate();
 }

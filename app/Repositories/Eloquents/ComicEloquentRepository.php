@@ -11,6 +11,10 @@ class ComicEloquentRepository implements ComicRepository
     {
         return Comic::all();
     }
+    public function getPaginate()
+    {
+        return Comic::paginate(5);
+    }
 
     public function getLastestChapter($id)
     {

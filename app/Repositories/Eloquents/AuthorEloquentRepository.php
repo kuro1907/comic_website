@@ -11,6 +11,11 @@ class AuthorEloquentRepository implements AuthorRepository
     {
         return Author::all();
     }
+    public function getPaginate()
+    {
+        return Author::paginate(5);
+    }
+
     public function getById($id)
     {
         return Author::find($id);

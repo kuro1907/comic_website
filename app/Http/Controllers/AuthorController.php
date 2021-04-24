@@ -16,7 +16,7 @@ class AuthorController extends Controller
 
     public function getAuthors()
     {
-        $authors = $this->authorRepository->getList();
+        $authors = $this->authorRepository->getPaginate();
         return view('dashboard.authors.list', compact('authors'));
     }
 

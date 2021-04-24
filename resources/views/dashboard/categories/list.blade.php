@@ -16,9 +16,9 @@
         <tr>
             <td>{{++$key}}</td>
             <td>{{$category->name}}</td>
-            <td><a type="button" class="btn btn-primary" href="/admin/authors/details/{{$category->id}}">Chi tiết</a>
-                <a type="button" class="btn btn-outline-warning" href="/admin/authors/edit/{{$category->id}}">Sửa</a>
-                <a type="button" class="btn btn-outline-danger" href="/admin/authors/delete/{{$category->id}}">Xóa</a>
+            <td><a type="button" class="btn btn-primary" href="/admin/categories/details/{{$category->id}}">Chi tiết</a>
+                <a type="button" class="btn btn-outline-warning" href="/admin/categories/edit/{{$category->id}}">Sửa</a>
+                <a type="button" class="btn btn-outline-danger" href="/admin/categories/delete/{{$category->id}}">Xóa</a>
             </td>
         </tr>
         @endforeach

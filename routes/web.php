@@ -44,9 +44,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', function () {
         return view('dashboard');
     });
-    Route::get('/users', function () {
-        return view('dashboard.user.list');
-    });
+    Route::get('/users', [AuthController::class, 'getList']);
     Route::get('/categories', [CategoryController::class, 'getCategories']);
 
     Route::get('/comics', [ComicsController::class, 'getComics']);

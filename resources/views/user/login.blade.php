@@ -17,6 +17,13 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">ĐĂNG NHẬP</h1>
                                 </div>
+                                @if ( Session::has('error') )
+                                <div class="col-md-12 alert alert-danger" role="alert">
+                                    <strong>{{ Session::get('error') }}</strong>
+
+                                </div>
+                                @endif
+
                                 <form class="user" method="post" action="/login">
                                     @csrf
                                     <div class="form-group">

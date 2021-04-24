@@ -11,6 +11,10 @@ class ChapterEloquentRepository implements ChapterRepository
     {
         return Chapter::all();
     }
+    public function getPaginate()
+    {
+        return Chapter::paginate(5);
+    }
     public function getById($id)
     {
         return Chapter::find($id);

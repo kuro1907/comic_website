@@ -33,4 +33,9 @@ class UserEloquentRepository implements UserRepository
         $entity = $this->getById($id);
         $entity->destroy();
     }
+
+    public function getPaginate()
+    {
+        return User::paginate(5);
+    }
 }
