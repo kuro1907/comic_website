@@ -2,31 +2,30 @@
 
 namespace App\Repositories\Eloquents;
 
-use App\Models\Category;
-use App\Repositories\Contracts\CategoryRepository;
+use App\Models\User;
+use App\Repositories\Contracts\UserRepository;
 
-class CategoryEloquentRepository implements CategoryRepository
+class UserEloquentRepository implements UserRepository
 {
     public function getList()
     {
-        return Category::all();
+        return User::all();
     }
-    public function getPaginate()
-    {
-        return Category::paginate(5);
-    }
+
     public function getById($id)
     {
-        return Category::find($id);
+        return User::find($id);
     }
     public function create($attributes)
     {
-        return Category::create($attributes);
+        return User::create($attributes);
     }
     public function update($id, $attributes)
     {
         $entity = $this->getById($id);
-        $entity->name = $attributes['name'];
+        $entity->name = $attributes->name;
+        $entity->email = $attributes->email;
+        $entity->password = $attributes->password;
         $entity->save();
     }
     public function delete($id)

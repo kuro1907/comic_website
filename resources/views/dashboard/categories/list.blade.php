@@ -24,4 +24,13 @@
         @endforeach
     </tbody>
 </table>
+<div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="pagination">
+            {{ $categories->appends(request()->query()) }}
+        </div>
+
+    </div>
+</div>
+
 @endsection

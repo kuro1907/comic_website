@@ -56,10 +56,10 @@
                         <a class="nav-link disabled" href="#">Fanpage</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="#">Đăng nhập</a>
+                        <a class="nav-link" href="/login">Đăng nhập</a>
                     </li>
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="#">Đăng ký</a>
+                        <a class="nav-link" href="register">Đăng ký</a>
                     </li>
                 </ul>
 

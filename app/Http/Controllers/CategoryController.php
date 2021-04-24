@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function getCategories()
     {
-        $categories = $this->categoryRepository->getList();
+        $categories = $this->categoryRepository->getPaginate();
         return view('dashboard.categories.list', compact('categories'));
     }
 }

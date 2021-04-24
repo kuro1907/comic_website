@@ -4,7 +4,6 @@ namespace App\Repositories\Contracts;
 
 use App\Repositories\Contracts\BaseRepository;
 
-interface CategoryRepository extends BaseRepository
+interface UserRepository extends BaseRepository
 {
-    public function getPaginate();
 }

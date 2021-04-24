@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ComicsController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +24,17 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/login', [AuthController::class, 'logIn']);
+Route::post('/login', [AuthController::class, 'signIn']);
+
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'signUp']);
+
+Route::get('/forgot_password', [AuthController::class, 'forgotPassword']);
+Route::post(('/forgot_password'), [AuthController::class], 'takePassword');
+
+
+
 Route::group(['prefix' => 'comic'], function () {
     Route::get('{id}', [HomeController::class, 'details']);
     Route::get('{id}/chapter/{chapter_id}', [HomeController::class, 'viewChapter']);

@@ -42,7 +42,7 @@ class AuthorController extends Controller
         ];
 
         // dd($attributes);
-        $test = $this->authorRepository->create($attributes);
+        $this->authorRepository->create($attributes);
 
         return redirect('/admin/authors');
     }
