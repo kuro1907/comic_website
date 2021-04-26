@@ -1,7 +1,7 @@
 @extends('layouts.dashboard-layout')
 @section('title','QUẢN LÝ NGƯỜI DÙNG')
 @section('content')
-<a class="btn btn-success" type="button" href="/admin/users/create">Thêm thể loại</a>
+<a class="btn btn-success" type="button" href="/admin/users/create">Thêm người dùng</a>
 
 <table class="table table-striped table-hover">
     <thead class=" table-bordered">
@@ -18,9 +18,10 @@
             <td>{{++$key}}</td>
             <td>{{$user->username}}</td>
             <td>{{$user->email}}</td>
-            <td><a type="button" class="btn btn-primary" href="/admin/users/details/{{$user->id}}">Chi tiết</a>
+            <td>
+                <a type="button" class="btn btn-primary" href="/admin/users/details/{{$user->id}}">Chi tiết</a>
                 <a type="button" class="btn btn-outline-warning" href="/admin/users/edit/{{$user->id}}">Sửa</a>
-                <a type="button" class="btn btn-outline-danger" href="/admin/users/delete/{{$user->id}}">Xóa</a>
+                <a type="button" class="btn btn-outline-danger" href="/admin/users/delete/{{$user->id}}" onClick="return confirm('Xoá người dùng {{$user->name}}?')">Xóa</a>
             </td>
         </tr>
         @endforeach

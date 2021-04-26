@@ -37,9 +37,14 @@ class AuthController extends Controller
     {
         return view('user.register');
     }
+    public function adminRegister()
+    {
+        return view('dashboard.users.create');
+    }
 
     public function signUp(Request $request)
     {
+
         $attributes = [
             'username'   => $request->username,
             'email'      => $request->email,
@@ -47,6 +52,18 @@ class AuthController extends Controller
         ];
         $this->userRepository->create($attributes);
         return redirect('login');
+    }
+
+    public function adminSignUp(Request $request)
+    {
+        $attributes = [
+            'username'   => $request->username,
+            'email'      => $request->email,
+            'password'   => bcrypt($request->password),
+            'role'       => $request->role
+        ];
+        $this->userRepository->create($attributes);
+        return redirect('/admin/users');
     }
 
     public function forgotPassword()
@@ -59,5 +76,34 @@ class AuthController extends Controller
         $users = $this->userRepository->getPaginate();
         // $users = $this->userRepository->getList();
         return view('dashboard.users.list', compact('users'));
+    }
+
+    public function details($id)
+    {
+        $user = $this->userRepository->getById($id);
+        // dd($user);
+        return view('dashboard.users.detail', compact('user'));
+    }
+
+    public function edit($id)
+    {
+        $user = $this->userRepository->getById($id);
+        return view('dashboard.users.edit', compact('user'));
+    }
+
+    public function updateUser($id, Request $request)
+    {
+        $attributes = [
+            'password'   => bcrypt($request->password),
+            'role'       => $request->role
+        ];
+        $this->userRepository->update($id, $attributes);
+        return redirect('/admin/users');
+    }
+
+    public function deleteUser($id)
+    {
+        $this->userRepository->delete($id);
+        return redirect('/admin/users');
     }
 }

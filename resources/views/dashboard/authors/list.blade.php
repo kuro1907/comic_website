@@ -17,7 +17,7 @@
             <td>{{$author->name}}</td>
             <td><a type="button" class="btn btn-primary" href="/admin/authors/details/{{$author->id}}">Chi tiết</a>
                 <a type="button" class="btn btn-outline-warning" href="/admin/authors/edit/{{$author->id}}">Sửa</a>
-                <a type="button" class="btn btn-outline-danger" href="/admin/authors/delete/{{$author->id}}">Xóa</a>
+                <a type="submit" class="btn btn-outline-danger" href="/admin/authors/delete/{{$author->id}}" onClick="return confirm('Xoá tác giả {{$author->name}}?')">Xóa</a>
             </td>
         </tr>
         @endforeach

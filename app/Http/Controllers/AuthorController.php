@@ -28,21 +28,69 @@ class AuthorController extends Controller
     public function storeAuthor(request $request)
     {
         if ($request->hasFile('img')) {
-            $img = $request->file('img');
-            $img_name = time() . '.' . $img->getClientOriginalExtension();
+            $image = $request->file('img');
+            $imgName = time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/storage/img/authors/');
-            $img->move($destinationPath, $img_name);
+            $image->move($destinationPath, $imgName);
+            $img = '/storage/img/authors/' . $imgName;
+            $attributes = [
+                'name'          => $request->name,
+                'dayBirth'      => $request->dayBirth,
+                'description'   => $request->description,
+                'img'           => $img
+            ];
+        } else {
+            $img = '/storage/img/authors/unknown.png';
+            $attributes = [
+                'name'          => $request->name,
+                'dayBirth'      => $request->dayBirth,
+                'description'   => $request->description,
+                'img'           => $img
+            ];
         }
-
-        $attributes = [
-            'name'          => $request->name,
-            'dayBirth'      => $request->dayBirth,
-            'description'   => $request->description,
-            'img'           => $img_name
-        ];
-
-        // dd($attributes);
         $this->authorRepository->create($attributes);
+        return redirect('/admin/authors');
+    }
+    public function details($id)
+    {
+        $author = $this->authorRepository->getById($id);
+        return view('dashboard.authors.detail', compact('author'));
+    }
+
+    public function edit($id)
+    {
+        $author = $this->authorRepository->getById($id);
+        return view('dashboard.authors.edit', compact('author'));
+    }
+
+    public function updateAuthor($id, Request $request)
+    {
+        if ($request->hasFile('img')) {
+            $image = $request->file('img');
+            $imgName = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/storage/img/authors/');
+            $image->move($destinationPath, $imgName);
+            $img = '/storage/img/authors/' . $imgName;
+            $attributes = [
+                'name'          =>  $request->name,
+                'dayBirth'      =>  $request->dayBirth,
+                'description'   =>  $request->description,
+                'img'           =>  $img
+            ];
+        } else {
+            $attributes = [
+                'name'          =>  $request->name,
+                'dayBirth'      =>  $request->dayBirth,
+                'description'   =>  $request->description,
+            ];
+        }
+        $this->authorRepository->update($id, $attributes);
+        return redirect('/admin/authors');
+    }
+
+    public function deleteAuthor($id)
+    {
+        $this->authorRepository->delete($id);
 
         return redirect('/admin/authors');
     }

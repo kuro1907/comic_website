@@ -23,15 +23,14 @@ class UserEloquentRepository implements UserRepository
     public function update($id, $attributes)
     {
         $entity = $this->getById($id);
-        $entity->name = $attributes->name;
-        $entity->email = $attributes->email;
-        $entity->password = $attributes->password;
+        $entity->role     = $attributes['role'];
+        $entity->password = $attributes['password'];
         $entity->save();
     }
     public function delete($id)
     {
         $entity = $this->getById($id);
-        $entity->destroy();
+        $entity->delete();
     }
 
     public function getPaginate()

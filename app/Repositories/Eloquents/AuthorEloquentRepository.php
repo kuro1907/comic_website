@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquents;
 use App\Models\Author;
 use App\Repositories\Contracts\AuthorRepository;
 
+
 class AuthorEloquentRepository implements AuthorRepository
 {
     public function getList()
@@ -26,16 +27,23 @@ class AuthorEloquentRepository implements AuthorRepository
     }
     public function update($id, $attributes)
     {
+
         $entity = $this->getById($id);
-        $entity->name           = $attributes['name'];
-        $entity->dayBirth       = $attributes['dayBirth'];
-        $entity->description    = $attributes['description'];
-        $entity->img            = $attributes['img'];
+        if (isset($attributes['img'])) {
+            $entity->name           = $attributes['name'];
+            $entity->dayBirth       = $attributes['dayBirth'];
+            $entity->description    = $attributes['description'];
+            $entity->img            = $attributes['img'];
+        } else {
+            $entity->name           = $attributes['name'];
+            $entity->dayBirth       = $attributes['dayBirth'];
+            $entity->description    = $attributes['description'];
+        }
         $entity->save();
     }
     public function delete($id)
     {
         $entity = $this->getById($id);
-        $entity->destroy();
+        $entity->delete();
     }
 }

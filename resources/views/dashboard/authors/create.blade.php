@@ -20,8 +20,11 @@
             <label class="col-md-2">Ảnh :</label>
             <input type="file" name="img" class="form-control col-md-6">
         </div>
-        <button type="submit">Gửi</button>
-        <a type="button" class="btn btn-primary" href="windown.onload()"></a>
+        <div class="row justify-content-center">
+            <button class="btn btn-primary mr-2" type="submit">Gửi</button>
+            <a type="button" class="btn btn-warning" onclick="window.history.go(-1); return false;">Hủy</a>
+        </div>
+
     </form>
 </div>
 @endsection

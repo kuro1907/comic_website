@@ -23,20 +23,20 @@ use Illuminate\Support\Facades\Route;
 //     return view('index');
 // });
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/login', [AuthController::class, 'logIn']);
-Route::post('/login', [AuthController::class, 'signIn']);
+Route::get('/',                             [HomeController::class, 'index']);
+Route::get('/login',                        [AuthController::class, 'logIn']);
+Route::post('/login',                       [AuthController::class, 'signIn']);
 
-Route::get('/register', [AuthController::class, 'register']);
-Route::post('/register', [AuthController::class, 'signUp']);
+Route::get('/register',                     [AuthController::class, 'register']);
+Route::post('/register',                    [AuthController::class, 'signUp']);
 
-Route::get('/forgot_password', [AuthController::class, 'forgotPassword']);
-Route::post(('/forgot_password'), [AuthController::class], 'takePassword');
+Route::get('/forgot_password',              [AuthController::class, 'forgotPassword']);
+Route::post(('/forgot_password'),           [AuthController::class], 'takePassword');
 
 
 
 Route::group(['prefix' => 'comic'], function () {
-    Route::get('{id}', [HomeController::class, 'details']);
+    Route::get('{id}',                      [HomeController::class, 'details']);
     Route::get('{id}/chapter/{chapter_id}', [HomeController::class, 'viewChapter']);
 });
 
@@ -44,12 +44,28 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', function () {
         return view('dashboard');
     });
-    Route::get('/users', [AuthController::class, 'getList']);
-    Route::get('/categories', [CategoryController::class, 'getCategories']);
+    Route::get('/users',                [AuthController::class, 'getList']);
+    Route::get('/users/create',         [AuthController::class, 'adminRegister']);
+    Route::post('/users/create',        [AuthController::class, 'adminSignUp']);
+    Route::get('/users/details/{id}',   [AuthController::class, 'details']);
+    Route::get('/users/edit/{id}',      [AuthController::class, 'edit']);
+    Route::post('/users/edit/{id}',     [AuthController::class, 'updateUser']);
+    Route::get('/users/delete/{id}',    [AuthController::class, 'deleteUser']);
 
-    Route::get('/comics', [ComicsController::class, 'getComics']);
+    Route::get('/categories',           [CategoryController::class, 'getCategories']);
+    Route::get('/categories/create',    [CategoryController::class, 'createCategories']);
+    Route::post('/categories/create',   [CategoryController::class, 'storeCategories']);
+    Route::get('/categories/edit/{id}', [CategoryController::class, 'edit']);
+    Route::put('/categories/edit/{id}', [CategoryController::class, 'updateCategory']);
+    Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteCategory']);
 
-    Route::get('/authors', [AuthorController::class, 'getAuthors']);
-    Route::get('/authors/create', [AuthorController::class, 'createAuthor']);
-    Route::post('/authors/create', [AuthorController::class, 'storeAuthor']);
+    Route::get('/comics',               [ComicsController::class, 'getComics']);
+
+    Route::get('/authors',              [AuthorController::class, 'getAuthors']);
+    Route::get('/authors/create',       [AuthorController::class, 'createAuthor']);
+    Route::post('/authors/create',      [AuthorController::class, 'storeAuthor']);
+    Route::get('/authors/details/{id}', [AuthorController::class, 'details']);
+    Route::get('/authors/edit/{id}',    [AuthorController::class, 'edit']);
+    Route::put('/authors/edit/{id}',    [AuthorController::class, 'updateAuthor']);
+    Route::get('/authors/delete/{id}',  [AuthorController::class, 'deleteAuthor']);
 });

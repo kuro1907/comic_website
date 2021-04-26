@@ -32,6 +32,6 @@ class CategoryEloquentRepository implements CategoryRepository
     public function delete($id)
     {
         $entity = $this->getById($id);
-        $entity->destroy();
+        $entity->delete();
     }
 }
