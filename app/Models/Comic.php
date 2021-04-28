@@ -10,7 +10,7 @@ class Comic extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'description', 'status', 'img', 'cover_img'];
 
     public function categories()
     {

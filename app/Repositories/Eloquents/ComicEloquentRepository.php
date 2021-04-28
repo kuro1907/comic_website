@@ -9,7 +9,7 @@ class ComicEloquentRepository implements ComicRepository
 {
     public function getList()
     {
-        return Comic::all();
+        return Comic::paginate(20);
     }
     public function getPaginate()
     {
@@ -51,14 +51,26 @@ class ComicEloquentRepository implements ComicRepository
         $entity = $this->getById($id);
         $entity->name           = $attributes['name'];
         $entity->description    = $attributes['description'];
+        $entity->slide          = $attributes['slide'];
         $entity->status         = $attributes['status'];
-        $entity->img            = $attributes['img'];
-        $entity->cover_img      = $attributes['cover_img'];
+        if (isset($attributes['img'])) {
+            $entity->img            = $attributes['img'];
+        }
+        if (isset($attributes['cover_img'])) {
+            $entity->cover_img      = $attributes['cover_img'];
+        }
         $entity->save();
     }
     public function delete($id)
     {
         $entity = $this->getById($id);
-        $entity->destroy();
+        $entity->delete();
+    }
+
+    public function search($keyword)
+    {
+
+        // dd($keyword);
+        return Comic::where('name', 'like', '%' . $keyword . '%')->get();
     }
 }

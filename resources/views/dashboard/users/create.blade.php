@@ -37,7 +37,6 @@
             <select class="form-control col-md-6" name="role">
                 <option value="user">Người dùng</option>
                 <option value="admin">Quản trị</option>
-
             </select>
         </div>
         <div class="row justify-content-center">

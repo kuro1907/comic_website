@@ -26,7 +26,7 @@
             </td>
             <td><a type="button" class="btn btn-primary" href="/admin/comics/details/{{$comic->id}}">Chi tiết</a>
                 <a type="button" class="btn btn-outline-warning" href="/admin/comics/edit/{{$comic->id}}">Sửa</a>
-                <a type="button" class="btn btn-outline-danger" href="/admin/comics/delete/{{$comic->id}}">Xóa</a>
+                <a type="button" class="btn btn-outline-danger" href="/admin/comics/delete/{{$comic->id}}" onClick="return confirm('Xoá truyện {{$comic->name}}?')">Xóa</a>
             </td>
         </tr>
         @endforeach

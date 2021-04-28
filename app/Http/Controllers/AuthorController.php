@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\AuthorRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthorController extends Controller
 {
@@ -16,13 +17,15 @@ class AuthorController extends Controller
 
     public function getAuthors()
     {
+        $user       = Auth::user();
         $authors = $this->authorRepository->getPaginate();
-        return view('dashboard.authors.list', compact('authors'));
+        return view('dashboard.authors.list', compact('authors', 'user'));
     }
 
     public function createAuthor()
     {
-        return view('dashboard.authors.create');
+        $user       = Auth::user();
+        return view('dashboard.authors.create', 'user');
     }
 
     public function storeAuthor(request $request)
@@ -53,14 +56,16 @@ class AuthorController extends Controller
     }
     public function details($id)
     {
+        $user       = Auth::user();
         $author = $this->authorRepository->getById($id);
-        return view('dashboard.authors.detail', compact('author'));
+        return view('dashboard.authors.detail', compact('author', 'user'));
     }
 
     public function edit($id)
     {
+        $user       = Auth::user();
         $author = $this->authorRepository->getById($id);
-        return view('dashboard.authors.edit', compact('author'));
+        return view('dashboard.authors.edit', compact('author', 'user'));
     }
 
     public function updateAuthor($id, Request $request)

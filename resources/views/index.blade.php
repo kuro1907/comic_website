@@ -43,8 +43,14 @@
                 <div class="img-comic">
                     <img src="{{$comics[$i]->img}}" style="height: 100%;width:100%" alt="">
                 </div>
-                <div class="name-comic"><a class="text-comic" href="/comic/{{$comics[$i]->id}}">{{$comics[$i]->name}}</a></div>
-                <div class="chapter"> <a class="text-comic" href="/comic/{{$comics[$i]->id}}/"> Chap {{$lastestChapterList[$i]->number}} - {{$lastestChapterList[$i]->name}} </a></div>
+                <div class="name-comic text-center "><a class="text-comic" href="/comic/{{$comics[$i]->id}}">{{$comics[$i]->name}}</a></div>
+                <div class="chapter">
+                    @if(isset($lastestChapterList[$i]))
+                    <a class="text-comic" style="color: #fff" href="/comic/{{$comics[$i]->id}}/chapter/{{$lastestChapterList[$i]->id}}"> Chap {{$lastestChapterList[$i]->number}} - {{$lastestChapterList[$i]->name}} </a>
+                    @else
+                    <a class=" text-comic" style="color: #fff" href="#">Chưa cập nhật</a>
+                    @endif
+                </div>
 
         </div>
         @endfor

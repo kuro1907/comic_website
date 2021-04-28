@@ -34,6 +34,6 @@ class ChapterEloquentRepository implements ChapterRepository
     public function delete($id)
     {
         $entity = $this->getById($id);
-        $entity->destroy();
+        $entity->delete();
     }
 }

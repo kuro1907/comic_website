@@ -8,6 +8,7 @@ use App\Repositories\Contracts\CategoryRepository;
 use App\Repositories\Contracts\ChapterRepository;
 use App\Repositories\Contracts\ComicRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -32,27 +33,56 @@ class HomeController extends Controller
     {
         $categories = $this->categoryRepository->getList();
         $comics     = $this->comicRepository->getList();
+        $user       = Auth::user();
+
+
         $lastestChapterList = [];
         foreach ($comics as $comic) {
             $lastestChapterList[] = $this->comicRepository->getLastestChapter($comic->id);
         }
-        return view('index', compact('categories', 'comics', 'lastestChapterList'));
+        return view('index', compact('categories', 'comics', 'lastestChapterList', 'user'));
     }
 
     public function details($id)
     {
+        $user       = Auth::user();
         $categories = $this->categoryRepository->getList();
         $entities = $this->comicRepository->getById($id);
         $author = $this->authorRepository->getById($entities->author_id)->name;
         $chapters = $this->comicRepository->getAllChapter($id);
-        return view('comic/detail-comic', compact('entities', 'categories', 'chapters', 'author'));
+        return view('comic/detail-comic', compact('entities', 'categories', 'chapters', 'author', 'user'));
     }
 
     public function viewChapter($id, $chapter_id)
     {
         $categories = $this->categoryRepository->getList();
-        $comic_name   = $this->comicRepository->getById($id)->name;
+        $comic   = $this->comicRepository->getById($id);
+        $chapters   = $this->comicRepository->getAllChapter($id);
         $chapter    = $this->comicRepository->getChapter($id, $chapter_id);
-        return view('comic/chapter', compact('categories', 'comic_name', 'chapter'));
+        $user       = Auth::user();
+
+        return view('comic/chapter', compact('categories', 'comic', 'chapters', 'chapter', 'user'));
+    }
+
+    public function dashboard()
+    {
+        $user   = Auth::user();
+        return view('dashboard', compact('user'));
+    }
+
+    public function search(Request $request)
+    {
+        $categories = $this->categoryRepository->getList();
+        $user       = Auth::user();
+
+
+        $keyword = $request->keyword;
+        // dd($keyword);
+        $comics = $this->comicRepository->search($keyword);
+        $lastestChapterList = [];
+        foreach ($comics as $comic) {
+            $lastestChapterList[] = $this->comicRepository->getLastestChapter($comic->id);
+        }
+        return view('listComic', compact('comics', 'user', 'categories', 'lastestChapterList'));
     }
 }

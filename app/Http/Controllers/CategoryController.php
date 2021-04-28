@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\CategoryRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -15,13 +16,15 @@ class CategoryController extends Controller
 
     public function getCategories()
     {
+        $user       = Auth::user();
         $categories = $this->categoryRepository->getPaginate();
-        return view('dashboard.categories.list', compact('categories'));
+        return view('dashboard.categories.list', compact('categories', 'user'));
     }
 
     public function createCategories()
     {
-        return view('dashboard.categories.create');
+        $user       = Auth::user();
+        return view('dashboard.categories.create', 'user');
     }
 
     public function storeCategories(Request $request)
@@ -36,8 +39,9 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
+        $user       = Auth::user();
         $category = $this->categoryRepository->getById($id);
-        return view('dashboard.categories.edit', compact('category'));
+        return view('dashboard.categories.edit', compact('category', 'user'));
     }
 
     public function updateCategory($id, Request $request)

@@ -9,4 +9,5 @@ interface ComicRepository extends BaseRepository
     public function getLastestChapter($id);
     public function getAllChapter($id);
     public function getChapter($id, $chapter_id);
+    public function search($keyword);
 }

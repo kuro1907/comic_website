@@ -14,6 +14,11 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">TẠO TÀI KHOẢN </h1>
                         </div>
+                        @if ( Session::has('message') )
+                        <div class="col-md-12 alert alert-danger text-align" role="alert">
+                            <strong>{{ Session::get('message') }}</strong>
+                        </div>
+                        @endif
                         <form class="user needs-validation" method="post" action="/register" novalidate>
                             @csrf
                             <div class="form-group">

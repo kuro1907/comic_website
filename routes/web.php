@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\ComicsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -24,14 +25,17 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/',                             [HomeController::class, 'index']);
-Route::get('/login',                        [AuthController::class, 'logIn']);
+Route::get('/login',                        [AuthController::class, 'logIn'])->name('login');
 Route::post('/login',                       [AuthController::class, 'signIn']);
+Route::get('/logout',                       [AuthController::class, 'logOut']);
 
-Route::get('/register',                     [AuthController::class, 'register']);
-Route::post('/register',                    [AuthController::class, 'signUp']);
+Route::get('/register',                     [AuthController::class, 'register'])->name('register');
+Route::post('/register',                    [AuthController::class, 'signUp'])->middleware('checkPassword');
 
 Route::get('/forgot_password',              [AuthController::class, 'forgotPassword']);
-Route::post(('/forgot_password'),           [AuthController::class], 'takePassword');
+Route::post(('/forgot_password'),           [AuthController::class, 'takePassword']);
+
+Route::post('/search',            [HomeController::class, 'search']);
 
 
 
@@ -40,10 +44,11 @@ Route::group(['prefix' => 'comic'], function () {
     Route::get('{id}/chapter/{chapter_id}', [HomeController::class, 'viewChapter']);
 });
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', function () {
-        return view('dashboard');
-    });
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['auth', 'checkRole']
+], function () {
+    Route::get('/',                     [HomeController::class, 'dashboard']);
     Route::get('/users',                [AuthController::class, 'getList']);
     Route::get('/users/create',         [AuthController::class, 'adminRegister']);
     Route::post('/users/create',        [AuthController::class, 'adminSignUp']);
@@ -60,6 +65,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteCategory']);
 
     Route::get('/comics',               [ComicsController::class, 'getComics']);
+    Route::get('/comics/create',        [ComicsController::class, 'createComic']);
+    Route::post('/comics/create',       [ComicsController::class, 'storeComic']);
+    Route::get('/comics/details/{id}',  [ComicsController::class, 'details'])->name('details');
+    Route::get('/comics/details/{id}/addchapter',  [ChapterController::class, 'addChapter']);
+    Route::post('/comics/details/{id}/addchapter',  [ChapterController::class, 'storeChapter']);
+    Route::get('/comics/edit/{id}',     [ComicsController::class, 'edit']);
+    Route::put('/comics/edit/{id}',     [ComicsController::class, 'updateComic']);
+    Route::get('/comics/delete/{id}',   [ComicsController::class, 'deleteComic']);
+
 
     Route::get('/authors',              [AuthorController::class, 'getAuthors']);
     Route::get('/authors/create',       [AuthorController::class, 'createAuthor']);

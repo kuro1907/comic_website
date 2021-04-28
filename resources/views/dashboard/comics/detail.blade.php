@@ -1,22 +1,21 @@
 @extends('layouts.dashboard-layout')
-@section('title','CHỈNH SỬA TRUYỆN')
+@section('title','THÔNG TIN TRUYỆN')
 @section('content')
+
 <div class="col-md-12">
     <form action="/admin/comics/edit/{{$comic->id}}" method="post" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="_method" value="PUT">
-
         <div class="form-group row">
             <label class="col-md-2">Tên truyện :</label>
-            <input type="text" name="name" value="{{$comic->name}}" class="col-md-6 form-control">
+            <input type="text" name="name" value="{{$comic->name}}" class="col-md-6 form-control" disabled>
         </div>
         <div class="form-group row">
             <label class="col-md-2">Mô tả :</label>
-            <textarea name="description" id="" cols="30" rows="10" class="form-control col-md-6">{{$comic->description}}</textarea>
+            <textarea name="description" id="" cols="30" rows="10" class="form-control col-md-6" disabled>{{$comic->description}}</textarea>
         </div>
         <div class="form-group row">
             <label class="col-md-2">Slide Chính :</label>
-            <select class="form-control col-md-6" name="slide">
+            <select class="form-control col-md-6" name="slide" disabled>
                 @if($comic->slide == 1)
                 <option value="1" selected>Có</option>
                 <option value="0">Không</option>
@@ -29,7 +28,7 @@
         </div>
         <div class="form-group row">
             <label class="col-md-2">Tình trạng :</label>
-            <select class="form-control col-md-6" name="status">
+            <select class="form-control col-md-6" name="status" disabled>
                 @if($comic->status == 1)
                 <option value="1" selected>Đang tiến hành</option>
                 <option value="2">Đã hoàn thành</option>
@@ -51,23 +50,46 @@
             <label class="col-md-2">Ảnh đại diện:</label>
             <div class="col-md-6">
                 <img src="{{$comic->img}}" width="150px">
-                <input type="file" name="img" class="form-control col-md-6">
-
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-2">Ảnh bìa:</label>
             <div class="col-md-6">
                 <img src="{{$comic->cover_img}}" width="100%">
-                <input type="file" name="cover_img" class="form-control col-md-6">
-
             </div>
         </div>
-        <div class="row justify-content-center">
-            <button class="btn btn-primary mr-2" type="submit">Gửi</button>
-            <a type="button" class="btn btn-warning" onclick="window.history.go(-1); return false;">Trở về</a>
-        </div>
-
     </form>
+    <hr>
+    <h3>Danh sách chap</h3>
+    <table class="table table-striped table-bordered top-20 table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên chương</th>
+                <th scope="col">Ngày giờ cập nhật</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($chapters as $key => $chapter)
+            <tr>
+                <td scope="row">{{++$key}}</td>
+                <td><a class="text-comic" href="/comic/{{$comic->id}}/chapter/{{$chapter->id}}">Chap {{$chapter->number}}: {{$chapter->name}}</a></td>
+                <td>{{$chapter->dayRelease}}</td>
+            </tr>
+            @endforeach
+            @if(count($chapters)== 0)
+            <tr>
+                <td></td>
+                <td>Đang cập nhật</td>
+                <td></td>
+            </tr>
+            @endif
+        </tbody>
+    </table>
+    <div class="row justify-content-center">
+        <a class="btn btn-success mr-2" href="/admin/comics/details/{{$comic->id}}/addchapter">Thêm chap mới</a>
+
+        <a type="button" class="btn btn-warning" onclick="window.history.go(-1); return false;">Trở về</a>
+    </div>
 </div>
 @endsection

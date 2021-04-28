@@ -20,7 +20,7 @@
         </div>
         <div class="form-group row">
             <label class="col-md-2">Ảnh tác giả :</label>
-            <img class="col-md-2" src="{{$author->img}}" height="150px" alt="">
+            <img class="col-md-6" src="{{$author->img}}" width="150px" alt="">
         </div>
 
 

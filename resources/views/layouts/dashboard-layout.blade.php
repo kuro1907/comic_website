@@ -11,7 +11,9 @@
     <link href="{{asset('/storage/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('storage/css/dashboard.css')}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://cdn.ckeditor.com/4.16.0/standard-all/ckeditor.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
@@ -32,15 +34,17 @@
             }, false);
         })();
     </script>
+
 </head>
 
 <body>
+
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
                 <div class="sidebar-brand-text mx-3">ADMIN</div>
             </a>
-            <span class="user-text">Xin chào</span>
+            <span class="user-text">Xin chào {{$user->username}}</span>
             <br>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">

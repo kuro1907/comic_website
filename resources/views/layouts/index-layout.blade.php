@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item mr-3">
-                        <form class="form-inline my-lg-0" method="GET" action="/search">
+                        <form class="form-inline my-lg-0" method="POST" action="/search">
                             @csrf
                             <input class="form-control mr-sm-2" style="width: 500px;" type="search" placeholder="Nhập từ khóa" name="keyword">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm </button>
@@ -55,12 +55,27 @@
                     <li class="nav-item mr-3">
                         <a class="nav-link disabled" href="#">Fanpage</a>
                     </li>
+                    @if(!isset($user))
                     <li class="nav-item mr-3">
                         <a class="nav-link" href="/login">Đăng nhập</a>
                     </li>
                     <li class="nav-item mr-3">
                         <a class="nav-link" href="register">Đăng ký</a>
                     </li>
+                    @else
+                    <li class="nav-item mr-3">
+                        <a class="nav-link" href="/logout">Xin chào,<strong> {{$user->username}}</strong></a>
+                    </li>
+                    <li class="nav-item mr-3">
+                        <a class="nav-link" href="/logout">Đăng xuất</a>
+                    </li>
+                    @if($user->role == 'admin')
+                    <li class="nav-item mr-3">
+                        <a class="nav-link" href="/admin">Quản lý</a>
+                    </li>
+                    @endif
+                    @endif
+
                 </ul>
 
             </div>
@@ -70,7 +85,7 @@
     <div class="container-fluid top-20">
         @yield('content')
     </div>
-    <footer class=" bg-dark text-center text-lg-start text-light">
+    <footer class=" bg-dark text-center text-lg-start text-light top-50">
         <!-- Grid container -->
         <div class="container p-4">
             <!--Grid row-->

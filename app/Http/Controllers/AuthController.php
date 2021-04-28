@@ -21,6 +21,13 @@ class AuthController extends Controller
         return view('user.login');
     }
 
+    public function logOut()
+    {
+        Auth::logout();
+
+        return redirect('/');
+    }
+
     public function signIn(Request $request)
     {
         $username = $request->username;
@@ -39,7 +46,8 @@ class AuthController extends Controller
     }
     public function adminRegister()
     {
-        return view('dashboard.users.create');
+        $user       = Auth::user();
+        return view('dashboard.users.create', compact('user'));
     }
 
     public function signUp(Request $request)
@@ -73,22 +81,27 @@ class AuthController extends Controller
 
     public function getList()
     {
+        $user = Auth::user();
         $users = $this->userRepository->getPaginate();
         // $users = $this->userRepository->getList();
-        return view('dashboard.users.list', compact('users'));
+        return view('dashboard.users.list', compact('user', 'users'));
     }
 
     public function details($id)
     {
-        $user = $this->userRepository->getById($id);
+        $user      = Auth::user();
+
+        $user_current  = $this->userRepository->getById($id);
         // dd($user);
-        return view('dashboard.users.detail', compact('user'));
+        return view('dashboard.users.detail', compact('user', 'user_current'));
     }
 
     public function edit($id)
     {
+        $user_current       = Auth::user();
+
         $user = $this->userRepository->getById($id);
-        return view('dashboard.users.edit', compact('user'));
+        return view('dashboard.users.edit', compact('user', 'user_current'));
     }
 
     public function updateUser($id, Request $request)

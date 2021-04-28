@@ -18,6 +18,22 @@
                 <h4>Tên truyện : {{$entities->name}}</h4>
                 <p><strong> Thể loại :</strong></p>
                 <p><strong> Tác giả : </strong>{{$author}}</p>
+                <p><strong> Tình trạng : </strong>
+                    @switch($entities->status)
+                    @case(1)
+                    Đang tiến hành
+                    @break
+
+                    @case(2)
+                    Đã hoàn thành
+                    @break
+
+                    @case(2)
+                    Tạm dừng
+                    @break
+
+                    @endswitch
+                </p>
                 <p><strong> Mô tả :</strong> {{$entities->description}}</p>
 
             </div>
@@ -41,6 +57,13 @@
                 <td>{{$chapter->dayRelease}}</td>
             </tr>
             @endforeach
+            @if(count($chapters)== 0)
+            <tr>
+                <td></td>
+                <td>Đang cập nhật</td>
+                <td></td>
+            </tr>
+            @endif
         </tbody>
     </table>
 </div>

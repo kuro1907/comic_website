@@ -11,7 +11,7 @@ class Chapter extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'number', 'content', 'dayRelease', 'comic_id'];
 
     public function comic()
     {
