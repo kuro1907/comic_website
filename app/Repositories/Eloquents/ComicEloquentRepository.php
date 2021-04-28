@@ -7,9 +7,13 @@ use App\Repositories\Contracts\ComicRepository;
 
 class ComicEloquentRepository implements ComicRepository
 {
+    public function getSlides()
+    {
+        return Comic::all()->where('slide', '1');
+    }
     public function getList()
     {
-        return Comic::paginate(20);
+        return Comic::orderBy('updated_at', 'DESC')->paginate(20);
     }
     public function getPaginate()
     {
@@ -24,13 +28,13 @@ class ComicEloquentRepository implements ComicRepository
 
     public function getAllChapter($id)
     {
-        $chapters = $this->getById($id)->chapters()->orderBy('number', 'DESC')->get();
+        $chapters = $this->getById($id)->chapters()->orderBy('number')->get();
         return $chapters;
     }
 
     public function getChapter($id, $chapter_id)
     {
-        $chapter = $this->getById($id)->chapters()->where('id', $chapter_id)->get();
+        $chapter = $this->getById($id)->chapters()->where('id', $chapter_id)->first();
         return $chapter;
     }
 
@@ -72,5 +76,10 @@ class ComicEloquentRepository implements ComicRepository
 
         // dd($keyword);
         return Comic::where('name', 'like', '%' . $keyword . '%')->get();
+    }
+
+    public function searchCategory($category)
+    {
+        return Comic::orderBy('updated_at', 'DESC')->paginate(20);
     }
 }

@@ -35,7 +35,8 @@ Route::post('/register',                    [AuthController::class, 'signUp'])->
 Route::get('/forgot_password',              [AuthController::class, 'forgotPassword']);
 Route::post(('/forgot_password'),           [AuthController::class, 'takePassword']);
 
-Route::post('/search',            [HomeController::class, 'search']);
+Route::post('/search',                      [HomeController::class, 'search']);
+Route::get(('/categories/{category}'),      [HomeController::class, 'searchCategory']);
 
 
 

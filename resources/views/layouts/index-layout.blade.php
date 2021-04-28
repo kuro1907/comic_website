@@ -40,7 +40,7 @@
                                     <tr>
                                         @foreach($categories as $key => $category)
 
-                                        <td class="dropdown-item" style="display:revert"><a class="dropdown-item" href="#">{{$category->name}}</a></td>
+                                        <td class="dropdown-item" style="display:revert"><a class="dropdown-item" href="/categories/{{$category->id}}">{{$category->name}}</a></td>
 
                                         @if($key == 2||$key == 5||$key == 8||$key == 11||$key == 14||$key==17 ||$key==20)
                                     </tr>

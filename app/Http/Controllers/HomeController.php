@@ -33,6 +33,7 @@ class HomeController extends Controller
     {
         $categories = $this->categoryRepository->getList();
         $comics     = $this->comicRepository->getList();
+        $slides      = $this->comicRepository->getSlides();
         $user       = Auth::user();
 
 
@@ -40,7 +41,7 @@ class HomeController extends Controller
         foreach ($comics as $comic) {
             $lastestChapterList[] = $this->comicRepository->getLastestChapter($comic->id);
         }
-        return view('index', compact('categories', 'comics', 'lastestChapterList', 'user'));
+        return view('index', compact('slides', 'categories', 'comics', 'lastestChapterList', 'user'));
     }
 
     public function details($id)
@@ -79,6 +80,18 @@ class HomeController extends Controller
         $keyword = $request->keyword;
         // dd($keyword);
         $comics = $this->comicRepository->search($keyword);
+        $lastestChapterList = [];
+        foreach ($comics as $comic) {
+            $lastestChapterList[] = $this->comicRepository->getLastestChapter($comic->id);
+        }
+        return view('listComic', compact('comics', 'user', 'categories', 'lastestChapterList'));
+    }
+
+    public function searchCategory($category)
+    {
+        $categories = $this->categoryRepository->getList();
+        $user       = Auth::user();
+        $comics = $this->comicRepository->searchCategory($category);
         $lastestChapterList = [];
         foreach ($comics as $comic) {
             $lastestChapterList[] = $this->comicRepository->getLastestChapter($comic->id);
