@@ -13,6 +13,7 @@ use App\Repositories\Eloquents\ChapterEloquentRepository;
 use App\Repositories\Eloquents\AuthorEloquentRepository;
 use App\Repositories\Eloquents\UserEloquentRepository;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -38,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        URL::forceScheme('https');
         Paginator::useBootstrap();
     }
 }
