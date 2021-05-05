@@ -1,0 +1,95 @@
+body{
+    background-color: #e5e7eb;
+}
+.top-20{
+    margin-top: 20px;
+}
+
+.top-50{
+    margin-top: 50px;
+}
+
+.bottom-50{
+    margin-bottom: 50px;
+}
+
+.table-cate{
+    width: 500px !important;
+}
+/* ============NAVBAR ==================*/
+.menu{
+    background-color: #e5e7eb;
+    opacity:0.97;
+}
+.cover{
+    width: 100%;
+}
+
+.round {
+    /* border-radius: 0px 0px 100px 100px; */
+}
+.bg-cover{
+    background-color: black;
+    opacity: 0.9;
+    width: 100%;
+    left: 0 !important;
+    right: 0 !important;
+    bottom:0  !important;
+}
+
+ .carousel-inner{
+     margin-top:30px;
+    height: 450px;
+    width: 100%;
+}
+/*============= SLIDE ================= */
+.title-content{
+    border-radius: 10px;
+    color:#e5e7eb;
+    height: 40px;
+    text-align: center;
+}
+
+.comic-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    font-size: 30px;
+    text-align: center;
+    margin: 10px 20px;
+    padding: 0px;
+    width: 100%;
+}
+
+.img-comic{
+    height: 250px;
+    background-color: red;
+}
+
+.name-comic{
+    font-size: 16px;
+    height: 50px;
+    display: flex;
+}
+
+.text-comic{
+    text-decoration: none;
+    color:black;
+    margin: auto;
+}
+
+
+.chapter{
+    background-color: #343a40;
+    font-size: 12px;
+    line-height: 30px;
+    
+
+}
+/* ============ DETAIL ============== */
+.img-title{
+    margin-top: -200px;
+    border: 5px solid;
+    border-color: white;;
+    background-color: red ;
+    padding: 0px;
+}
