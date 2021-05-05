@@ -1,5 +1,7 @@
 @extends('layouts.index-layout')
-@section('title','Trang chủ')
+@section('title')
+<title>Trang chủ</title>
+@endsection
 @section('cover')
 <div class="cover">
     <div id="carouselExampleControls" class="carousel slide cover" data-ride="carousel">

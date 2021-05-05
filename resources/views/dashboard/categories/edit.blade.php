@@ -1,5 +1,11 @@
 @extends('layouts.dashboard-layout')
-@section('title','SỬA THỂ LOẠI')
+@section('title')
+<title>Chỉnh sửa thể loại {{$category->name}}</title>
+@endsection
+
+@section('title-section')
+Chỉnh sửa thể loại {{$category->name}}
+@endsection
 @section('content')
 <div class="col-md-12">
     <form action="/admin/categories/edit/{{$category->id}}" method="post" class="needs-validation" novalidate>

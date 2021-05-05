@@ -1,27 +1,29 @@
 @extends('layouts.dashboard-layout')
 @section('title')
-<title>Thêm chap mới</title>
+<title>Sửa chap {{$chapter->name}}</title>
 @endsection
 
 @section('title-section')
-Thêm chap mới
+Sửa chap {{$chapter->name}}
 @endsection
 @section('content')
 
 <div class="col-md-12">
-    <form action="/admin/comics/details/{{$id}}/addchapter" method="post">
+    <form action="/admin/comics/details/{{$id}}/editchapter/{{$chapter->id}}" method="post">
         @csrf
         <div class=" form-group row">
             <label class="col-md-2">Tên chap :</label>
-            <input type="text" name="name" class="col-md-6 form-control">
+            <input type="text" name="name" value="{{$chapter->name}}" class="col-md-6 form-control">
         </div>
         <div class=" form-group row">
             <label class="col-md-2">Số chap</label>
-            <input type="text" name="number" class="col-md-6 form-control">
+            <input type="text" name="number" value="{{$chapter->number}}" class="col-md-6 form-control">
         </div>
         <div class=" form-group row ">
             <label class="col-md-2">Nội dung :</label>
-            <textarea name="content" id="summernote" cols="30" rows="10" class="form-control col-md-12"></textarea>
+            <textarea name="content" id="summernote" cols="30" rows="10" class="form-control col-md-12">
+            {{$chapter->content}}
+            </textarea>
         </div>
 
         <script>

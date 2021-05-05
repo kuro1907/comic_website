@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/',                             [HomeController::class, 'index']);
-Route::get('/login',                        [AuthController::class, 'logIn'])->name('login');
+Route::get('/login',                        [AuthController::class, 'logIn'])->middleware('checkLogin')->name('login');
 Route::post('/login',                       [AuthController::class, 'signIn']);
 Route::get('/logout',                       [AuthController::class, 'logOut']);
 
@@ -69,12 +69,13 @@ Route::group([
     Route::get('/comics/create',        [ComicsController::class, 'createComic']);
     Route::post('/comics/create',       [ComicsController::class, 'storeComic']);
     Route::get('/comics/details/{id}',  [ComicsController::class, 'details'])->name('details');
-    Route::get('/comics/details/{id}/addchapter',  [ChapterController::class, 'addChapter']);
-    Route::post('/comics/details/{id}/addchapter',  [ChapterController::class, 'storeChapter']);
+    Route::get('/comics/details/{id}/addchapter',                   [ChapterController::class, 'addChapter']);
+    Route::post('/comics/details/{id}/addchapter',                  [ChapterController::class, 'storeChapter']);
+    Route::get('/comics/details/{id}/editchapter/{chapter_id}',     [ChapterController::class, 'editChapter']);
+    Route::put('/comics/details/{id}/editchapter/{chapter_id}',     [ChapterController::class, 'updateChapter']);
     Route::get('/comics/edit/{id}',     [ComicsController::class, 'edit']);
     Route::put('/comics/edit/{id}',     [ComicsController::class, 'updateComic']);
     Route::get('/comics/delete/{id}',   [ComicsController::class, 'deleteComic']);
-
 
     Route::get('/authors',              [AuthorController::class, 'getAuthors']);
     Route::get('/authors/create',       [AuthorController::class, 'createAuthor']);

@@ -1,5 +1,11 @@
 @extends('layouts.dashboard-layout')
-@section('title','THÊM THỂ LOẠI')
+@section('title')
+<title>Thêm thể loại</title>
+@endsection
+
+@section('title-section')
+Thêm tác giả
+@endsection
 @section('content')
 <div class="col-md-12">
     <form action="/admin/categories/create" method="post" class="needs-validation" novalidate>

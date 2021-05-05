@@ -64,7 +64,7 @@
                     </li>
                     @else
                     <li class="nav-item mr-3">
-                        <a class="nav-link" href="/logout">Xin chào,<strong> {{$user->username}}</strong></a>
+                        <a class="nav-link" href="/logout">Xin chào,<strong> {{auth()->user()->username}}</strong></a>
                     </li>
                     <li class="nav-item mr-3">
                         <a class="nav-link" href="/logout">Đăng xuất</a>

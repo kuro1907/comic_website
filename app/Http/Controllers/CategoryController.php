@@ -16,15 +16,13 @@ class CategoryController extends Controller
 
     public function getCategories()
     {
-        $user       = Auth::user();
         $categories = $this->categoryRepository->getPaginate();
-        return view('dashboard.categories.list', compact('categories', 'user'));
+        return view('dashboard.categories.list', compact('categories'));
     }
 
     public function createCategories()
     {
-        $user       = Auth::user();
-        return view('dashboard.categories.create', 'user');
+        return view('dashboard.categories.create');
     }
 
     public function storeCategories(Request $request)
@@ -39,9 +37,8 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $user       = Auth::user();
         $category = $this->categoryRepository->getById($id);
-        return view('dashboard.categories.edit', compact('category', 'user'));
+        return view('dashboard.categories.edit', compact('category'));
     }
 
     public function updateCategory($id, Request $request)

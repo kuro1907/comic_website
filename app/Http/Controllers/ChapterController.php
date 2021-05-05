@@ -18,8 +18,7 @@ class ChapterController extends Controller
 
     public function addChapter($id)
     {
-        $user       = Auth::user();
-        return view('dashboard.comics.add-chapter', compact('id', 'user'));
+        return view('dashboard.comics.add-chapter', compact('id'));
     }
 
     public function storeChapter($id, Request $request)
@@ -33,6 +32,23 @@ class ChapterController extends Controller
         ];
 
         $this->chapterRepository->create($attributes);
+        return redirect()->route('details', ['id' => $id]);
+    }
+
+    public function editChapter($id, $chapter_id)
+    {
+        $user       = Auth::user();
+        return view('dashboard.comics.edit-chapter', compact('id', 'chapter_id', 'user'));
+    }
+
+    public function updateChapter($id, $chapter_id, Request $request)
+    {
+        $attributes = [
+            'name'          => $request->name,
+            'number'        => $request->number,
+            'content'       => $request->content,
+        ];
+        $this->chapterRepository->update($chapter_id, $attributes);
         return redirect()->route('details', ['id' => $id]);
     }
 }

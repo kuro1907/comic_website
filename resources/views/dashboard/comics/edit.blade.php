@@ -1,5 +1,11 @@
 @extends('layouts.dashboard-layout')
-@section('title','CHỈNH SỬA TRUYỆN')
+@section('title')
+<title>Chi tiết truyện {{$comic->name}}</title>
+@endsection
+
+@section('title-section')
+Chi tiết truyện {{$comic->name}}
+@endsection
 @section('content')
 <div class="col-md-12">
     <form action="/admin/comics/edit/{{$comic->id}}" method="post" enctype="multipart/form-data">

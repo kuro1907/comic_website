@@ -1,5 +1,11 @@
 @extends('layouts.dashboard-layout')
-@section('title','Chỉnh sửa người dùng')
+@section('title')
+<title>Chi tiết người dùng {{$user->name}}</title>
+@endsection
+
+@section('title-section')
+Chi tiết người dùng {{$user->name}}
+@endsection
 @section('content')
 <div class="col-md-12">
     <form action="/admin/users/edit/{{$user->id}}" method="post" class="needs-validation" novalidate>

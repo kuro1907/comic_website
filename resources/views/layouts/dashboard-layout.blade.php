@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
+    @yield('title')
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -44,7 +44,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
                 <div class="sidebar-brand-text mx-3">ADMIN</div>
             </a>
-            <span class="user-text">Xin chào {{$user->username}}</span>
+            <span class="user-text">Xin chào {{auth()->user()->username}}</span>
             <br>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -102,7 +102,7 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <!-- TITLE -->
                     <div class="d-sm-flex align-items-center justify-content-between ">
-                        <h1 class="h3 mb-0 text-gray-800 align-center">@yield('title')</h1>
+                        <h1 class="h3 mb-0 text-gray-800 align-center">@yield('title-section')</h1>
                     </div>
                 </nav>
                 <div class="container">

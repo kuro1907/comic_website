@@ -17,15 +17,13 @@ class AuthorController extends Controller
 
     public function getAuthors()
     {
-        $user       = Auth::user();
         $authors = $this->authorRepository->getPaginate();
-        return view('dashboard.authors.list', compact('authors', 'user'));
+        return view('dashboard.authors.list', compact('authors'));
     }
 
     public function createAuthor()
     {
-        $user       = Auth::user();
-        return view('dashboard.authors.create', 'user');
+        return view('dashboard.authors.create');
     }
 
     public function storeAuthor(request $request)
@@ -56,16 +54,14 @@ class AuthorController extends Controller
     }
     public function details($id)
     {
-        $user       = Auth::user();
         $author = $this->authorRepository->getById($id);
-        return view('dashboard.authors.detail', compact('author', 'user'));
+        return view('dashboard.authors.detail', compact('author'));
     }
 
     public function edit($id)
     {
-        $user       = Auth::user();
         $author = $this->authorRepository->getById($id);
-        return view('dashboard.authors.edit', compact('author', 'user'));
+        return view('dashboard.authors.edit', compact('author'));
     }
 
     public function updateAuthor($id, Request $request)

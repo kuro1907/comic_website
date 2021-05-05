@@ -1,5 +1,11 @@
 @extends('layouts.dashboard-layout')
-@section('title','THÊM TÁC GIẢ')
+@section('title')
+<title>Thêm tác giả </title>
+@endsection
+
+@section('title-section')
+Thêm tác giả
+@endsection
 @section('content')
 <div class="col-md-12">
     <form action="/admin/authors/create" method="post" enctype="multipart/form-data">

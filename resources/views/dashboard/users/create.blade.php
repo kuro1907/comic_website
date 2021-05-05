@@ -1,5 +1,11 @@
 @extends('layouts.dashboard-layout')
-@section('title','THÊM NGƯỜI DÙNG')
+@section('title')
+<title>Thêm người dùng</title>
+@endsection
+
+@section('title-section')
+Thêm người dùng
+@endsection
 @section('content')
 <div class="col-md-12">
     <form action="/admin/users/create" method="post" class="needs-validation" novalidate>

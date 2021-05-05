@@ -81,27 +81,24 @@ class AuthController extends Controller
 
     public function getList()
     {
-        $user = Auth::user();
         $users = $this->userRepository->getPaginate();
         // $users = $this->userRepository->getList();
-        return view('dashboard.users.list', compact('user', 'users'));
+        return view('dashboard.users.list', compact('user'));
     }
 
     public function details($id)
     {
-        $user      = Auth::user();
 
         $user_current  = $this->userRepository->getById($id);
         // dd($user);
-        return view('dashboard.users.detail', compact('user', 'user_current'));
+        return view('dashboard.users.detail', compact('user_current'));
     }
 
     public function edit($id)
     {
-        $user_current       = Auth::user();
 
         $user = $this->userRepository->getById($id);
-        return view('dashboard.users.edit', compact('user', 'user_current'));
+        return view('dashboard.users.edit', compact('user'));
     }
 
     public function updateUser($id, Request $request)

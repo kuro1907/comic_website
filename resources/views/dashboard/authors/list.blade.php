@@ -1,5 +1,9 @@
 @extends('layouts.dashboard-layout')
-@section('title','QUẢN LÝ TÁC GIẢ')
+@extends('layouts.dashboard-layout')
+@section('title')
+<title>Quản lý tác giả</title>
+@endsection
+@section('title-section','Quản lý tác giả')
 @section('content')
 <a class="btn btn-success" type="button" href="/admin/authors/create">Thêm tác giả</a>
 <table class="table table-striped table-hover">

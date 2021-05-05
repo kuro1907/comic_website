@@ -1,5 +1,11 @@
 @extends('layouts.dashboard-layout')
-@section('title','THÔNG TIN TRUYỆN')
+@section('title')
+<title>Chi tiết truyện {{$comic->name}}</title>
+@endsection
+
+@section('title-section')
+Chi tiết truyện {{$comic->name}}
+@endsection
 @section('content')
 
 <div class="col-md-12">
@@ -67,6 +73,7 @@
                 <th scope="col">STT</th>
                 <th scope="col">Tên chương</th>
                 <th scope="col">Ngày giờ cập nhật</th>
+                <th scope="col">Tác vụ</th>
             </tr>
         </thead>
         <tbody>
@@ -75,6 +82,9 @@
                 <td scope="row">{{++$key}}</td>
                 <td><a class="text-comic" href="/comic/{{$comic->id}}/chapter/{{$chapter->id}}">Chap {{$chapter->number}}: {{$chapter->name}}</a></td>
                 <td>{{$chapter->dayRelease}}</td>
+                <td>
+                    <a class="btn btn-outline-warning mr-2" href="/admin/comics/details/{{$comic->id}}/editchapter/{{$chapter->id}}">Sửa</a>
+                </td>
             </tr>
             @endforeach
             @if(count($chapters)== 0)

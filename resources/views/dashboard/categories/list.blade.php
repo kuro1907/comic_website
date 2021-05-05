@@ -1,5 +1,9 @@
 @extends('layouts.dashboard-layout')
-@section('title','QUẢN LÝ THỂ LOẠI')
+@extends('layouts.dashboard-layout')
+@section('title')
+<title>Quản lý thể loại</title>
+@endsection
+@section('title-section','Quản lý thể loại')
 @section('content')
 <a class="btn btn-success" type="button" href="/admin/categories/create">Thêm thể loại</a>
 

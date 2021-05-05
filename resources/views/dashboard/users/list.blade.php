@@ -1,5 +1,8 @@
 @extends('layouts.dashboard-layout')
-@section('title','QUẢN LÝ NGƯỜI DÙNG')
+@section('title')
+<title>Quản lý người dùng</title>
+@endsection
+@section('title-section','Quản lý người dùng')
 @section('content')
 <a class="btn btn-success" type="button" href="/admin/users/create">Thêm người dùng</a>
 

@@ -1,5 +1,9 @@
 @extends('layouts.dashboard-layout')
-@section('title','QUẢN LÝ TRUYỆN TRANH')
+@extends('layouts.dashboard-layout')
+@section('title')
+<title>Quản lý truyện tranh</title>
+@endsection
+@section('title-section','Quản lý truyện tranh')
 @section('content')
 <a class="btn btn-success" type="button" href="/admin/comics/create">Thêm truyện</a>
 

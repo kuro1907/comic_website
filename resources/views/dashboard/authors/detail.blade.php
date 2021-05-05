@@ -1,5 +1,11 @@
 @extends('layouts.dashboard-layout')
-@section('title','SỬA TÁC GIẢ')
+@section('title')
+<title>Chi tiết tác giả {{$author->name}}</title>
+@endsection
+
+@section('title-section')
+Chi tiết tác giả {{$author->name}}
+@endsection
 @section('content')
 <div class="col-md-12">
     <form action="/admin/authors/edit/{{$author->id}}" method="post" enctype="multipart/form-data">
